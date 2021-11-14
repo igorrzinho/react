@@ -325,3 +325,22 @@ Dados.defaultProps={
 ```` 
 neste caso o `isRequired` não é necessário 
 ___ 
+# eventos em react
+* os eventos do react são os mesmos do DOM
+* nao tem muita diferença exeto por uma coisa bem siples: ao ultilizar o onClik ou outras funcoes do tipo nao se coloca os paranteses'()'
+```` jsx
+import React from 'react';
+import '../App.css';
+
+export default function Eventos(){
+  function event(){
+    document.write('você clicou')
+  }
+  return(
+    <div>
+     <button onClick={event} className='btn'> clique aqui</button>
+    </div>
+  )
+};
+```` 
+`<button onClick={event} className='btn'> clique aqui</button>`repare que não se coloca os parenteses'()'
