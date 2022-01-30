@@ -707,8 +707,100 @@ export default App;
 agora sim cada objeto sera tratado
 ___
 
-* [ ] aula 14 
+* [x] aula 14
+# formularios em React
+## exemplo 1 
+abaixo a useState nome inicia como uma stirng vazia e o value do input é o variavel o onChange faz com que qualquer mudança no value do input o setNome recebe a value só input  
+````
+import React,{useState} from 'react';
 
+function App() {
+
+    const [nome,setNome]=useState('');
+
+    return (
+        <>
+           <label htmlFor="formNome">digite seu nome</label>
+           <input type="text" name="formNome" id="formNome" value={nome} onChange={(e)=>setNome(e.target.value)} />
+           <p>nome digittado:{nome}</p>
+        </>
+    );
+}
+
+export default App;
+
+```` 
+ abaixo é igual a anterior mas com a diferença que agora o onChange chama a função handleChangeNome que faz com que qualquer mudança no value do input o setNome recebe a value do input o funcionamento é igual
+````
+import React,{useState} from 'react';
+
+function App() {
+
+    const [nome,setNome]=useState('');
+    const handleChangeNome=(e)=>{
+        setNome(e.target.value)
+    }
+    return (
+        <>
+           <label htmlFor="formNome">digite seu nome</label>
+           <input type="text" name="formNome" id="formNome" value={nome} onChange={(e)=>handleChangeNome(e)} />
+           <p>nome digitado: {nome}</p>
+        </>
+    );
+}
+
+export default App;
+
+```` 
+## exemplo 2
+nesse vai ser igual porem com um select
+````
+import React,{useState} from 'react';
+
+function App() {
+
+    const [carro,setCarro]=useState('hrv');
+    return (
+        <>
+           <label htmlFor="">selecione um carro</label>
+           <select value={carro} onChange={(e)=>setCarro(e.target.values)}>
+               <option value="hrv">hrv</option>
+               <option value="golf">golf</option>
+               <option value="cruze">cruze</option>
+               <option value="argo">argo</option>
+           </select>
+           <p>o carro selecionado: {carro}</p>
+        </>
+    );
+}
+
+export default App;
+```` 
+essa é igual a de cima mas com uma função que é chamada no onChange
+````
+import React,{useState} from 'react';
+
+function App() {
+    const mudaCarro=(e)=>{
+        setCarro(e.target.value)
+    }
+    const [carro,setCarro]=useState('hrv');
+    return (
+        <>
+           <label htmlFor="">selecione um carro</label>
+           <select value={carro} onChange={(e)=>mudaCarro(e)}>
+               <option value="hrv">hrv</option>
+               <option value="golf">golf</option>
+               <option value="cruze">cruze</option>
+               <option value="argo">argo</option>
+           </select>
+           <p>o carro selecionado: {carro}</p>
+        </>
+    );
+}
+
+export default App;
+```` 
 ___
 
 * [ ] aula 15 
