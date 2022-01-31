@@ -260,7 +260,7 @@ e no arquivo jsx
 ## voce tambem pode ustilizar o css modules 
  voce coloca o nome do arquivo que vai estilizar e cria um arquivo css com nome de "Nome.module.css"
 ___
-* [x] aula 9
+* [x] aula 9  
 # fragments
 é basicamente você usar o `<></>` no lugar de uma div.por exemplo para criar uma ul voce pode usar isso no lugar de uma div veja:
 ```` js
@@ -348,7 +348,7 @@ export default function Eventos(){
  `<button onClick={event} className='btn'> clique aqui</button>` repare que não se coloca os parenteses'()'
 ---
 # rendenezição
-* [x] aula 09  
+* [x] aula 09   
   no react a rendenização funcion de forma com que apenas oque sofreu alteração sera mudado
  ao criarmos uma função de relogio
 ```` jsx 
@@ -409,7 +409,7 @@ ao irmos no navegador veremos que apenas oque esta sendo mudado é o **h1** onde
 
 ___
 
-* [x] aula 10 
+* [x] aula 10  
 # state
  a primeira coisa que devemos fazer para usar o **state** é importar-lo `import React,{useState} from 'react';` 
  para criar um **state** usamos
@@ -492,7 +492,7 @@ export default function nome(props) {
  o resultado é o mesmo do anterior porem passaos as funçoes e o state ultilizando **props**
 ___
 
-* [x] aula   11
+* [x] aula   11  
 # eventos em react
  esse projeto consiste em uma lampada que acende e desliga conforme os clicks no botão
 * no arquivo app.js 
@@ -555,7 +555,7 @@ export default App;
 ao clicar no link não sera redirecionado
 ___
 
-* [x] aula 12 
+* [x] aula 12  
 # rendenizaçao condicional 
 ## exemplo 1
  essa função mostrara um cumprimento de acordo com as horas que sao no computador da pessoa;
@@ -586,8 +586,8 @@ export default App;
 ```` 
 ## exemplo 2
  nesse a função login vai mudar o valor do setLogin para o contrario do log;  
- o <p> verfica se o log é verdade(true) caso seja chama a função msgLogin caso nao seja verdade(false) chama a função noLogin 
- ao clicar no <button> chama a  função login;
+ o <p/> verfica se o log é verdade(true) caso seja chama a função msgLogin caso nao seja verdade(false) chama a função noLogin 
+ ao clicar no button chama a  função login  
 
 ````
 import React,{useState} from 'react';
@@ -707,7 +707,7 @@ export default App;
 agora sim cada objeto sera tratado
 ___
 
-* [x] aula 14
+* [x] aula 14  
 # formularios em React
 ## exemplo 1 
 abaixo a useState nome inicia como uma stirng vazia e o value do input é o variavel o onChange faz com que qualquer mudança no value do input o setNome recebe a value só input  
@@ -803,16 +803,195 @@ export default App;
 ```` 
 ___
 
-* [ ] aula 15 
+* [x] aula 15 
+# elevação de state
+## exemplo 1 
+nesse app captura o valor dos values do formulario e coloca dentro do objeto form  
+qualquer alteração na values dos inputs chama a função handleForm que verifica o nome do input caso seja ele que sofreu alteração ja é colocado novamente o valor do value
+````
+import React,{useState} from 'react';
+
+function App() {
+    const [form,setForm]=useState({"dia":"","mes":"","ano":""})
+    
+    const handleForm=(e)=>{
+        if(e.target.getAttribute('name')=='fdia'){
+            setForm({"dia":e.target.value,"mes":form.mes,"ano":form.ano})
+
+        }else if(e.target.getAttribute('name')=='fmes'){
+            setForm({"dia":form.mes,"mes":e.target.value,"ano":form.ano})
+
+        }else if(e.target.getAttribute('name')=='fano'){
+            setForm({"dia":form.dia,"mes":form.mes,"ano":e.target.value})
+        }
+    }
+    return (
+        <>
+        <label htmlFor="">dia</label>
+        <input type="text" name="fdia" value={form.dia} onChange={(e)=>handleForm(e)} /><br />
+        <label htmlFor="">mes</label>
+        <input type="text" name="fmes" value={form.mes} onChange={(e)=>handleForm(e)} /><br />    
+        <label htmlFor="">ano</label>
+        <input type="text" name="fano" value={form.ano} onChange={(e)=>handleForm(e)} /><br />
+        <p>dia digitado: {form.dia}</p>
+        <p>mes digitado: {form.mes}</p>
+        <p>ano digitado: {form.ano}</p>    
+        </>
+    );
+}
+
+export default App;
+
+```` 
 
 ___
 
-* [ ] aula 16 
+* [x] aula 16 
+# elevação de state  
+ este projeto é um sistema para ver se o aluno foi aprovado ou nao  
+ no app  
+ aqui passamos os props para o arquivo nota e resultado.
+ para o resultado mandamos a funçao notaSomada soma as notas 
+````
+import React,{useState} from 'react';
+import Resultado from './componentes/resultado';
+import Notas from './componentes/nota';
 
+function App() {
+
+    const [nota1,setNota1]=useState(0)
+    const [nota2,setNota2]=useState(0)
+    const [nota3,setNota3]=useState(0)
+    const [nota4,setNota4]=useState(0)
+
+    const notaSomadas=()=>{
+
+        return(parseFloat(nota1)+parseFloat(nota2)+parseFloat(nota3)+parseFloat(nota4))
+    }
+
+return(
+    <>
+    <Notas num={1} nota={nota1} setNota={setNota1}/>
+    <Notas num={2} nota={nota2} setNota={setNota2}/>
+    <Notas num={3} nota={nota3} setNota={setNota3}/>
+    <Notas num={4} nota={nota4} setNota={setNota4}/>
+    <Resultado somaNotas={notaSomadas()}/>
+    </>
+    );
+}
+
+export default App;
+
+```` 
+ no arquivo notas  
+ o props.setNota vai capturar o valor digitado e passar para a nota e props.nota vai deixar o valor digitado sempre atualizado
+````
+import React from "react";
+
+export default function Notas(props){
+
+    return(
+        <>
+            <label >informe a nota: {props.num}</label>
+            <br/>
+            <input type="text" value={props.nota}  onChange={(e)=>props.setNota(e.target.value)}/>
+            <br />
+        </>
+    );
+}
+```` 
+ no arquivo resultado   
+ mostra quanto é o props 
+ verifica se o props é maior que 60 para mostrar aprovado ou nao aprovado
+````
+import React from "react";
+
+export default function Resultado(props){
+    return(
+        <div>
+        <p>soma das notas{props.somaNotas}</p>
+        <p>{props.somaNotas >= 60? 'aprovado':'nao aprovado'}</p>
+        </div>
+    );
+};
+```` 
 ___
 
-* [ ] aula 17
+* [x] aula 17  
+# desafio da aula 17;  
+ no app
+````
+import React,{useState} from 'react';
+import Resultado from './componentes/resultado';
+import Nota from './componentes/nota';
 
+function App() {
+
+    const [notas,setNotas]=useState({"nota1":0,"nota2":0,"nota3":0,"nota4":0})
+
+    const handleNotas=(e)=>{
+        if (e.target.getAttribute('name')=='nota1'){
+            setNotas({"nota1":e.target.value,"nota2":notas.nota2,"nota3":notas.nota3,"nota4":notas.nota4})
+        } else if (e.target.getAttribute('name')=='nota2'){
+            setNotas({"nota1":notas.nota1,"nota2":e.target.value,"nota3":notas.nota3,"nota4":notas.nota4})
+        }else if(e.target.getAttribute('name')=='nota3'){
+            setNotas({"nota1":notas.nota1,"nota2":notas.nota2,"nota3":e.target.value,"nota4":notas.nota4})
+        }else if(e.target.getAttribute('name')=='nota4'){
+            setNotas({"nota1":notas.nota1,"nota2":notas.nota2,"nota3":notas.nota3,"nota4":e.target.value})
+        }
+    }
+
+    const notaSomada=()=>{
+        return(parseFloat(notas.nota1)+parseFloat(notas.nota2)+parseFloat(notas.nota3)+parseFloat(notas.nota4))
+    }
+
+
+return(
+    <>
+    <Nota num={1} nome={'nota1'} nota={notas.nota1} setNota={handleNotas}/>
+    <Nota num={2} nome={'nota2'} nota={notas.nota2} setNota={handleNotas}/>
+    <Nota num={3} nome={'nota3'} nota={notas.nota3} setNota={handleNotas}/>
+    <Nota num={4} nome={'nota4'} nota={notas.nota4} setNota={handleNotas}/>
+    <Resultado somaNotas={notaSomada()}/>
+    </>
+    );
+}
+
+export default App;
+
+```` 
+ no arquivo nota
+````
+import React from "react";
+
+export default function Notas(props){
+
+    return(
+        <>
+            <label >informe a nota: {props.num}</label>
+            <br/>
+            <input type="text" name={props.nome} value={props.nota}  onChange={(e)=>props.setNota(e)}/>
+            <br />
+        </>
+    );
+}
+```` 
+ no arquivo resultado
+````
+import React from "react";
+
+export default function Notas(props){
+
+    return(
+        <>
+            <label >informe a nota: {props.num}</label>
+            <br/>
+            <input type="text" name={props.nome} value={props.nota}  onChange={(e)=>props.setNota(e)}/>
+            <br />
+        </>
+    );
+}
+```` 
 ___
 
 * [ ] aula 18 
