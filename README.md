@@ -913,11 +913,11 @@ export default function Resultado(props){
         <p>{props.somaNotas >= 60? 'aprovado':'nao aprovado'}</p>
         </div>
     );
-};
+};>setContagem=>(contagem+1
 ```` 
 ___
 
-* [x] aula 17  
+* [x] aula 17
 # desafio da aula 17;  
  no app
 ````
@@ -980,7 +980,7 @@ export default function Notas(props){
 ````
 import React from "react";
 
-export default function Notas(props){
+export default function>setContagem=>(contagem+1 Notas(props){
 
     return(
         <>
@@ -994,13 +994,124 @@ export default function Notas(props){
 ```` 
 ___
 
-* [ ] aula 18 
+* [x] aula 18  
+# contenação  
+ a contenação nada mais é que voce ultilizar um elementos como uma div e usar o props para chamar oque tiver dentro dela veja abaixo:
+ no arquivo app
+````
+import React from 'react';
+import Caixa from './componentes/caixa';
+
+export default function App() {
+
+return(
+    <>
+
+    <Caixa>
+        <p>primeiro elemento</p>
+        <p>segundo elemento</p>
+        <p>terceiro elemento</p>
+        <p>quarto elemento</p>
+        <p>quinto elemento</p>
+    </Caixa>
+    </>
+    );
+}
+```` 
+ no arquivo caixa:
+````
+import React from 'react';
+
+export default function Caixa(props){
+
+
+    return(
+    <>
+    
+    {props.children}
+    </>
+    );
+}
+```` 
+ como estamos chamando todos os children ele vai mostrar todos
+ caso chamaçemos como uma array ele mostraria apenas os chamados  
+````
+import React from 'react';
+
+export default function Caixa(props){
+
+
+    return(
+    <>
+    
+    {props.children[0]}
+    {props.children[4]}
+    </>
+    );
+}
+```` 
+ agora so vai mostrar o primeiro eo qunto elementos
 
 ___
 
-* [ ] aula 19 
+* [x] aula 19 
+# useEffect 
+ primeiro importamos ele: `import React,{useEffect}from 'react';`
+ agora podemos usa-lo, o **useEffect** é chamado toda vez que a pagina é carregada ou atualizada por exemplo:
+ aqui ao você abrir a pagina sera dado o console.log('pagina carregada') porque a pagina foi carregada
+````
+import React from 'react';
 
-___
+export default function App() {
+
+    useEffect(
+        ()=>console.log('pagina carregada')
+    )
+return(
+    <>
+
+    </>
+    );
+}
+```` 
+ aqui toda vez que clicarmos no **button** aparecera um console.log("pagina carregada") porque a pagina foi atualizada 
+````
+import React,{useState,useEffect}from 'react';
+
+export default function App() {
+    const [contagem,setContagem]=useState(0)
+    useEffect(
+        ()=>console.log('pagina carregada')
+    )
+return(
+    <>
+        <p>contagem: {contagem}</p>
+        <button onClick={()=>setContagem(contagem+1)}>contar</button>
+    </>
+    );
+}
+```` 
+ aqui toda vez que clicar no botão vai adicionar **'contagem'+contagem** no titulo do site, perceba que tera um pequeno delay apos atualizar o valor da *contagem* ate atualizar o titulo da pagina
+````
+import React,{useState,useEffect}from 'react';
+
+export default function App() {
+    const [contagem,setContagem]=useState(0)
+    useEffect(
+        ()=>{console.log('pagina carregada')
+        document.title=('contagem: '+contagem)
+    }
+    )
+return(
+    <>
+        <p>contagem: {contagem}</p>
+        <button onClick={()=>setContagem(contagem+1)}>contar</button>
+    </>
+    );
+}
+```` 
+
+___ 
 
 * [ ] aula 20 
 
