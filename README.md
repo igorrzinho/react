@@ -413,11 +413,11 @@ ___
 # state
  a primeira coisa que devemos fazer para usar o **state** é importar-lo `import React,{useState} from 'react';` 
  para criar um **state** usamos
-````
+```` js
 const [nome,setNome]=useState('o valor de inicio');
 ```` 
 e para usarmo usamos: 
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -435,7 +435,7 @@ export default App;
  sera mostrado na tela 'o nome é: igor' 
  para mudar o valor do **useState** colocamos `setNome(oque vai receber)` nao conseguimos mudar apenas com o nome pois é uma constante. 
  a principal razão para usarmo o **useState** no lugar de uma variável é que caso o valor for mudado durante a execução sera mostrado na tela por exemplo se colocarmos um botão chamando uma função que muda o nome para Gustavo sera mostrado na tela se essa alteração acontecer em programação não sera mostrado 
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -456,7 +456,7 @@ export default App;
 no exemplo acima isso é demostrado ao clicar no botão muda nome chama a função `mudaNome` que altera o valor do **setNome** para Gustavo e mostar na tela 'o nome é: Gustavo' se usarmos uma variavel no lugar do setNome nao sera mostrado a alteração na tela
 
 agora criei um componente que recebe props no app oque aparece é:
-````
+```` js
 import React,{useState} from 'react';
 import Nome from './componentes/nome';
 
@@ -476,7 +476,7 @@ export default App;
 
 ```` 
 e no componente é:
-````
+```` js
 import React,{useState} from 'react';
 
 export default function nome(props) {
@@ -497,7 +497,7 @@ ___
  esse projeto consiste em uma lampada que acende e desliga conforme os clicks no botão
 * no arquivo app.js 
  aqui passamos os parametros ligado e setLigado
-````
+```` js
 import React,{useState} from 'react';
 import Luz from './componentes/luz';
 
@@ -517,7 +517,7 @@ export default App;
 * no arquivo luz.jsx 
  aqui receberemos os props ligado e setLigado  
 no button recebe o setLigado e retorna o contrario do ligado e caso seja true vai voltar a ser false, temos o operador ternario que caso ligado seja verdade (true) vai mostrar desligar e se nao vai mostrar ligar 
-````
+```` js
 import React,{useState,} from 'react';
 import Apagada from '../img/apagada.png';
 import Acesa from '../img/acesa.png'
@@ -534,7 +534,7 @@ export default function luz(props) {
 ```` 
 
 no react para um link nao redirecionar usamos 
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {    
@@ -559,7 +559,7 @@ ___
 # rendenizaçao condicional 
 ## exemplo 1
  essa função mostrara um cumprimento de acordo com as horas que sao no computador da pessoa;
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -589,7 +589,7 @@ export default App;
  o <p/> verfica se o log é verdade(true) caso seja chama a função msgLogin caso nao seja verdade(false) chama a função noLogin 
  ao clicar no button chama a  função login  
 
-````
+```` js 
 import React,{useState} from 'react';
 
 function App() {
@@ -623,7 +623,7 @@ ___
 # trabalhando com a função map
 ## exemplo 1 
 nesse caso vai imprimir os carros na tela dessa forma: "HRVGOLFFOCUSCRUZEARGO"
-````
+```` js
 function App() {
      const carros=['HRV','GOLF','FOCUS','CRUZE','ARGO']
     return (
@@ -637,7 +637,7 @@ export default App;
 ````
 
 agora nesse exemplo a funcao listaCarros vai retornar cada string do array ja tratada cada elemento sera retornada como um <p>, mas podia ser qualquer elemento HTML(p, li, button, etc...)
-````
+```` js
 function App() {
      const carros=['HRV','GOLF','FOCUS','CRUZE','ARGO'];
      const listaCarros=carros.map(
@@ -656,7 +656,7 @@ export default App;
 ## exemplo 2
  ### nesse usaremos uma matriz
 caso deixarmos do mesmo jeito do outro nada sera retornado
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -681,7 +681,7 @@ export default App;
 ```` 
 
 por isso usamos a seguinte forma 
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -711,7 +711,7 @@ ___
 # formularios em React
 ## exemplo 1 
 abaixo a useState nome inicia como uma stirng vazia e o value do input é o variavel o onChange faz com que qualquer mudança no value do input o setNome recebe a value só input  
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -731,7 +731,7 @@ export default App;
 
 ```` 
  abaixo é igual a anterior mas com a diferença que agora o onChange chama a função handleChangeNome que faz com que qualquer mudança no value do input o setNome recebe a value do input o funcionamento é igual
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -754,7 +754,7 @@ export default App;
 ```` 
 ## exemplo 2
 nesse vai ser igual porem com um select
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -777,7 +777,7 @@ function App() {
 export default App;
 ```` 
 essa é igual a de cima mas com uma função que é chamada no onChange
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -808,7 +808,7 @@ ___
 ## exemplo 1 
 nesse app captura o valor dos values do formulario e coloca dentro do objeto form  
 qualquer alteração na values dos inputs chama a função handleForm que verifica o nome do input caso seja ele que sofreu alteração ja é colocado novamente o valor do value
-````
+```` js
 import React,{useState} from 'react';
 
 function App() {
@@ -852,7 +852,7 @@ ___
  no app  
  aqui passamos os props para o arquivo nota e resultado.
  para o resultado mandamos a funçao notaSomada soma as notas 
-````
+```` js
 import React,{useState} from 'react';
 import Resultado from './componentes/resultado';
 import Notas from './componentes/nota';
@@ -885,7 +885,7 @@ export default App;
 ```` 
  no arquivo notas  
  o props.setNota vai capturar o valor digitado e passar para a nota e props.nota vai deixar o valor digitado sempre atualizado
-````
+```` js
 import React from "react";
 
 export default function Notas(props){
@@ -903,7 +903,7 @@ export default function Notas(props){
  no arquivo resultado   
  mostra quanto é o props 
  verifica se o props é maior que 60 para mostrar aprovado ou nao aprovado
-````
+```` js
 import React from "react";
 
 export default function Resultado(props){
@@ -920,7 +920,7 @@ ___
 * [x] aula 17
 # desafio da aula 17;  
  no app
-````
+```` js
 import React,{useState} from 'react';
 import Resultado from './componentes/resultado';
 import Nota from './componentes/nota';
@@ -946,7 +946,7 @@ function App() {
     }
 
 
-return(
+https://github.com/igorrzinho/reactreturn(
     <>
     <Nota num={1} nome={'nota1'} nota={notas.nota1} setNota={handleNotas}/>
     <Nota num={2} nome={'nota2'} nota={notas.nota2} setNota={handleNotas}/>
@@ -961,7 +961,7 @@ export default App;
 
 ```` 
  no arquivo nota
-````
+```` js
 import React from "react";
 
 export default function Notas(props){
@@ -977,7 +977,7 @@ export default function Notas(props){
 }
 ```` 
  no arquivo resultado
-````
+```` js
 import React from "react";
 
 export default function>setContagem=>(contagem+1 Notas(props){
@@ -998,7 +998,7 @@ ___
 # contenação  
  a contenação nada mais é que voce ultilizar um elementos como uma div e usar o props para chamar oque tiver dentro dela veja abaixo:
  no arquivo app
-````
+```` js
 import React from 'react';
 import Caixa from './componentes/caixa';
 
@@ -1019,7 +1019,7 @@ return(
 }
 ```` 
  no arquivo caixa:
-````
+```` js
 import React from 'react';
 
 export default function Caixa(props){
@@ -1035,7 +1035,7 @@ export default function Caixa(props){
 ```` 
  como estamos chamando todos os children ele vai mostrar todos
  caso chamaçemos como uma array ele mostraria apenas os chamados  
-````
+```` js
 import React from 'react';
 
 export default function Caixa(props){
@@ -1059,7 +1059,7 @@ ___
  primeiro importamos ele: `import React,{useEffect}from 'react';`
  agora podemos usa-lo, o **useEffect** é chamado toda vez que a pagina é carregada ou atualizada por exemplo:
  aqui ao você abrir a pagina sera dado o console.log('pagina carregada') porque a pagina foi carregada
-````
+```` js
 import React from 'react';
 
 export default function App() {
@@ -1075,7 +1075,7 @@ return(
 }
 ```` 
  aqui toda vez que clicarmos no **button** aparecera um console.log("pagina carregada") porque a pagina foi atualizada 
-````
+```` js
 import React,{useState,useEffect}from 'react';
 
 export default function App() {
@@ -1092,7 +1092,7 @@ return(
 }
 ```` 
  aqui toda vez que clicar no botão vai adicionar **'contagem'+contagem** no titulo do site, perceba que tera um pequeno delay apos atualizar o valor da *contagem* ate atualizar o titulo da pagina
-````
+```` js
 import React,{useState,useEffect}from 'react';
 
 export default function App() {
@@ -1113,15 +1113,133 @@ return(
 
 ___ 
 
-* [ ] aula 20 
+* [x] aula 20 
+# localStorage
+o **localStorage** é formado basicamente por 3 funções são elas: `setItem` que vai criar ou mudar o valor da chave,`getItem` vai chamar a chave e `removeItem` vai remover a chave
+```` js
 
+import React,{useState} from 'react';
+
+function App() {
+  localStorage.setItem('nome',"igor")// vai criar ou mudar o valor de nome
+  localStorage.getItem('nome')// vai chamar o nome
+  localStorage.removeItem('nome')// vai remover a chave nome
+
+
+  return (
+    <>
+      <p>como vai a vida</p>
+    </>
+  );
+}
+
+export default App;
+
+```` 
+## exemplo 1
+nesse exemplo criei um app que ao voce clicar nos botoes (cada um chama uma função) você pode gravar, mudar, ver, ou apagar um nome do seu **localStorage**.
+* o botão gravar nome chama a função armazenar e passa os parametros:'ls_nome' como chave e nome como valor
+* o botão ver nome chama a função consultar e passa 'ls_nome' como parametro 
+* o botão apagar nome chama a função remover e passa 'ls_nome' como parametro
+```` js
+
+import React,{useState} from 'react';
+
+function App() {
+
+  const [nome,setNome]=useState('')
+
+  const armazenar=(chave,valor)=>{
+    localStorage.setItem(chave,valor)
+  }
+
+  const consultar=(chave)=>{
+
+    alert(localStorage.getItem(chave))
+  }
+  const remover=(chave)=>{
+    localStorage.removeItem(chave)
+  }
+
+
+  return (
+    <div>
+      <label>digite um nome</label><br/>
+      <input type="text" value={nome} onChange={(e)=>setNome(e.target.value)}/><br/>
+      <button onClick={()=>armazenar('ls_nome',nome)}>gravar nome</button><br/>
+      <button onClick={()=>consultar('ls_nome')}>ver nome</button><br/>
+      <button onClick={()=>remover('ls_nome')}>apagar nome</button>
+    </div>
+  );
+}
+
+export default App;
+
+```` 
 ___
 
-* [ ] aula 21 
+* [x] aula 21 
+# componentes de classe (inicio do POO)
+para criar um componentes com classe usamos:
+```` js
+ import React from 'react';
 
+class nomeDoComponente extends React.Component{
+  render(){
+    return(
+      <p>hello word</p>
+    )
+  }
+}
+
+export default classe;
+
+```` 
+
+## props em componentes de classe
+vai mudar apenas no componente de classe mas a forma de passar é a mesma:
+```` js
+
+import React,{useState} from 'react';
+import Classe from './components/classe'
+
+function App() {
+
+  return (
+    <>
+      <Classe nome="igor"/>
+    </>
+  );
+}
+
+export default App;
+
+```` 
+mas na forma de colocar no outro componente muda um pouco
+1. primeiro temos que colocar o método construtor nesse caso `contructor(props){}`
+1. e quando formos colocar no componente usamos o this antes do props assim: `this.props.nome`
+1. e colocar o super com props `super(props)` dentro do construtor mas não é obrigatório
+```` js
+import React from 'react';
+
+class classe extends React.Component{
+  contructor(props){//metodo construtor
+    
+  }
+
+  render(){
+    return(
+      <p>meu nome é: {this.props.nome}</p>
+    )
+  }
+}
+
+export default classe;
+
+```` 
 ___
 
-* [ ] aula 22 
+* [ ] aula  22 
 
 ___
 
