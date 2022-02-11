@@ -1216,15 +1216,15 @@ export default App;
 
 ```` 
 mas na forma de colocar no outro componente muda um pouco
-1. primeiro temos que colocar o método construtor nesse caso `contructor(props){}`
+1. primeiro temos que colocar o método construtor nesse caso `constructor(props){}`
 1. e quando formos colocar no componente usamos o this antes do props assim: `this.props.nome`
 1. e colocar o super com props `super(props)` dentro do construtor mas não é obrigatório
 ```` js
 import React from 'react';
 
 class classe extends React.Component{
-  contructor(props){//metodo construtor
-    
+  constructor(props){//metodo construtor
+    super(props)
   }
 
   render(){
@@ -1239,11 +1239,136 @@ export default classe;
 ```` 
 ___
 
-* [ ] aula  22 
+* [x] aula  22 
+# state em componetes de classe
+as diferenças começam na hora de declarar uma variavel comum precisamos colocada dentro do `constructor` veja abaixo  
+e antes de usar o nome da variável usamos `this.nomeDaVariavel`
+```` js
+import React from 'react';
 
+class classe extends React.Component{
+  constructor(){//metodo construtor
+    super()
+
+    this.nome='igor'
+  }
+
+  render(){
+    return(
+      <p>me chamo {this.nome}</p>
+    )
+  }
+}
+
+export default classe;
+
+````
+
+na hora de usarmos **useState** fica parecido com um arquivo json:
+```` js
+import React from 'react';
+
+class classe extends React.Component{
+  constructor(){//metodo construtor
+    super()
+
+    this.state={//o state aqui
+      nome: 'igor',
+      apelido: 'igorrzinho'
+    }
+  }
+
+  render(){
+    return(
+      <>
+        <p>me chamo :{this.state.nome}</p>
+        <p>tambem conhecido como :{this.state.apelido}</p>
+      </>
+    )
+  }
+}
+
+export default classe;
+
+
+````
+
+ agora iremos refazer o projeto da lampada, é basicamente o mesmo mudando apenas que essa é feita com componentes de classe  
+* ao clicar no **button** ele vai chamar a função ligarDesligar que atribui a setState.ligado o contrario de ligado
+* na imagem caso **ligado** seja 'true' vai mostrar a imagem ligada e caso seja falso aparece a imagem desligada
+* e no button caso **ligado** seja 'true' vai mostrar apagar e caso seja falso aparece ligar
+```` js
+import React from 'react';
+import Desligada from './6.png'
+import Ligada from './7.png'
+
+
+class luz extends React.Component{
+  constructor(){//metodo construtor
+    super()
+
+    this.state={//o state aqui
+      ligado: true,
+    }
+  }
+  ligarDesligar(){
+    this.setState({
+      ligado:!this.state.ligado//atribui a setState.ligado o contrario de ligado
+    })
+  }
+
+  render(){
+    return(
+      <>
+      <img src={this.state.ligado ? Ligada: Desligada} />{/*caso *ligado* seja 'true' vai mostrar a imagem ligada e caso seja falso aparece a imagem desligada*/}
+      <button onClick={()=>this.ligarDesligar()}>{this.state.ligado ? 'apagar': 'ligar'}</button>{/*caso *ligado* seja 'true' vai mostrar apagar e caso seja falso aparece ligar*/}
+      </>
+    )
+  }
+}
+
+export default classe;
+ 
+```` 
 ___
 
-* [ ] aula 23 
+* [x] aula 23 
+# parte dois state em componetes de classe
+agora usamos na função que o **botão** chama, uma aerofunction dentro da função para não ter erro e ele adicionar +1 no numero
+```` js
+import React from 'react';
+
+
+
+class Calc extends React.Component{
+  constructor(){//metodo construtor
+    super()
+
+    this.state={//o state aqui
+      numero: 0
+    }
+  }
+
+
+  adicionar(){
+    this.setState(
+      ()=>({numero: this.state.numero+1})//usamos uma aerofunction para nao ter erro e ele adicionar +1 no numero
+      )
+  }
+
+  render(){
+    return(
+      <>
+      <h1>adicionar</h1>
+        <button onClick={()=>this.adicionar()}>adicionar</button>{/* chama a funçao adicionar */}
+        <p>o numero é: {this.state.numero}</p>{/* mostra o state numero */}
+      </>
+    )
+  }
+}
+export default Calc;
+
+````
 
 ___
 
