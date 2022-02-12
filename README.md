@@ -1372,11 +1372,181 @@ export default Calc;
 
 ___
 
-* [ ] aula 24 
+* [x] aula 24
+## BIND em react
+ o BIND vai permitir que mudar o conceito do this de um determinado elemento  
+faremos um BIND para a função `ligarDesligar()` eo codigo ficou assim
+* adicionamos `this.ld=this.ligarDesligar.bind(this)` para chamar a função `ligarDesligar()`
+```` js
+import React from 'react';
+import Desligada from './6.png'
+import Ligada from './7.png'
+
+
+class luz extends React.Component{
+  constructor(){//metodo construtor
+    super()
+
+    this.state={//o state aqui
+      ligado: true,
+    }
+    this.ld=this.ligarDesligar.bind(this)/* foi adicionada essa funçao */
+  }
+  ligarDesligar(){
+    this.setState({
+      ligado:!this.state.ligado//atribui a setState.ligado o contrario de ligado
+    })
+  }
+
+  render(){
+    return(
+      <>
+      <img src={this.state.ligado ? Ligada: Desligada} />
+      <button onClick={this.ld}>{this.state.ligado ? 'apagar': 'ligar'}</button>{/*agora nao precisa mais de ultilizar uma aerofunction para chamar a funçao*/}
+      </>
+    )
+  }
+}
+
+export default luz;
+
+````
+
+* podemos ultilizar  o seguinte metodo quando ultilizamos o **BIND** para mudar um state `this.setState({ligado:!this.state.ligado})` 
+```` js
+import React from 'react';
+import Desligada from './6.png'
+import Ligada from './7.png'
+
+
+class luz extends React.Component{
+  constructor(){//metodo construtor
+    super()
+
+    this.state={//o state aqui
+      ligado: true,
+    }
+    this.ld=this.ligarDesligar.bind(this)/* foi adicionada essa funçao */
+  }
+  ligarDesligar(){
+    this.setState({ligado:!this.state.ligado})/* podemos usar esse método para mudar um state com BINDS*/
+  }
+
+  render(){
+    return(
+      <>
+      <img src={this.state.ligado ? Ligada: Desligada} />
+      <button onClick={this.ld}>{this.state.ligado ? 'apagar': 'ligar'}</button>{/*agora nao precisa mais de ultilizar uma aerofunction para chamar a funçao*/}
+      </>
+    )
+  }
+}
+
+export default luz;
+
+```` 
 
 ___
 
-* [ ] aula 25 
+* [X] aula 25
+## ciclo de vida dos componentes 
+1. Na montagem, quando uma instancia do componente esta sendo criada no DOM
+	1. constructor()
+	2. static getDerivedStateFromProps()
+	3. render()
+	4. componentDidMount()
+2. na atualização do componente, por alterações causadas em props ou state, quando o componente esta sendo renderizado
+	1. static getDerivedStateFromProps()
+	2. shouldComponenteUpdate()
+	3. getSnapshotBeforeUpdate()
+	4. componentDidUpdate()
+3. na desmontagem, quando o componente esta sendo removido do DOM.
+	1. componentWillUnmount()
+4. em tratamantos de erros, quando existir algum erro em algum momento do compente.
+	1. static getDerivedStstrFromError()
+	2. componentDidCatch()
+ciente disso vamos começa  
+o `componentDidMount()` é chamado toda vez que a pagina é criada por exemplo ao colocar na Luz apos os ligarDesligar() o seguinte codigo:
+```` js
+
+  ligarDesligar(){
+    this.setState({ligado:!this.state.ligado})
+  }
+
+/* parte adicionada inicio */
+  componentDidMount(){
+    console.log('pagina criada');
+  }
+/* parte adicionada final */
+
+  render(){
+    return(
+
+```` 
+ao carregarmos a pagina **luz**
+ aparecera apenas um console.log com 'pagina criada' podemos ter varias alteraçoes na pagina que so aparecera um  
+mas se usarmos o `componentDidUpdate()` toda vez que luz for apagada aparecera um console.log com 'pagina atualizada'
+```` js
+  ligarDesligar(){
+    this.setState({ligado:!this.state.ligado})
+  }
+/* parte adicionada inicio */
+  componentDidMount(){
+    console.log('pagina criada');
+  }
+
+  componentDidUpdate(){
+    console.log('pagina atualizada');
+  }
+/* parte adicionada final */
+  render(){
+    return(
+```` 
+e o `componentWillUnmount()` vai ser chamado toda vez que a pagina **luz** for removida
+```` js
+  ligarDesligar(){
+    this.setState({ligado:!this.state.ligado})/* podemos usar esse metodo para fazer a chamada */
+  }
+/* parte adicionada inicio */
+  componentDidMount(){
+    console.log('pagina criada');
+  }
+
+  componentDidUpdate(){
+    console.log('pagina atualizada');
+  }
+
+  componentWillUnmount(){
+    console.log('objeto removido');
+  }
+/* parte adicionada final */
+  render(){
+    return(
+```` 
+e no arquivo app
+```` js
+
+import React,{useState} from 'react';
+import Luz from './components/luz'
+
+function App() {
+
+  const [tirar,setTirar]=useState(true)
+  const tirarLuz=()=>{
+    setTirar(!tirar)
+  }
+  return (
+    <>
+      {tirar ?<Luz/>:''}
+    <button onClick={()=>tirarLuz()}>{tirar?'tirar a luz':'colocar a luz'}</button>
+    </>
+  );
+}
+
+export default App;
+
+```` 
+sempre que apertamos em tirar a luz aparecera um console.log com 'objeto removido' e quando apertarmos em colocar a lus aparecera um console.log com 'pagina carregada' pois estamos carregando a pagina **luz** 
 
 ___
 
