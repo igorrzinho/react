@@ -1550,19 +1550,238 @@ sempre que apertamos em tirar a luz aparecera um console.log com 'objeto removid
 
 ___
 
-* [ ] aula 26 
+* [x] aula 26
+# estrutura de um componentes de classes
+```` js 
+import React from "react";
+
+export default class BaseClasse extends React.Component{
+    constructor(props){
+        //Para permitir o uso de props
+        super(props)
+        
+        //state
+        this.state={
+            canal:'CFB Cursos',
+            curso:'React',
+            ativo:true,
+            nome:this.props.nomeAluno
+        }
+        this.status=this.props.status
+        
+        //bindagem
+        let ad=ativarDesativar.bind(this)
+
+        //Instruções do construtor
+    }
+
+    //Função para manipular state
+    ativarDesativar(){
+        this.setState(
+            state=>({
+                ativo=!state.ativo
+            })
+        )
+    }
+
+    componentDidMount(){
+        console.log('O componente foi criado')
+    }
+
+    componentDidUpdate(){
+        console.log('O componente foi atualizado')
+    }
+
+    componentWillUnmount(){
+        console.log('O componente foi removido')
+    }
+
+    render(){
+        return(
+            <>
+                <h1>Componente de Classe</h1>
+                <button onClick={this.ad}>Ativar Desativar</button>
+                <button onClick={()=>this.ativarDesativar}>Ativar Desativar</button>
+            </>
+        )
+    }
+}
+```` 
 
 ___
 
-* [ ] aula 27 
+* [x] aula 27
+# variáveis globais 
+ para declarar variáveis globais usamos o seguinte `static nomeVariavel='oque ela recebe'` veja no exemplo abaixo onde declaramos as variáveis nome e idd: 
+```` js
+export default class Global {
+    static nome = 'igor'
+    static idd = 15
+}; 
+```` 
+para usarmos em outro componente primeiro importamos e depois usamos `nomeComponente.nomeVariavel` como abaixo 
+```` js
+import React from 'react';
+import Global from './components/global';
+
+function App() {
+
+  return (
+    <>
+        <p>me chamo {Global.nome}</p>
+        <p>tenho {Global.idd} de idade</p>
+    </>
+  );
+}
+
+export default App;
+
+```` 
+lembrando que são **VARIÁVEIS** e não muda o valor que é mostrado na tela porque não é uma useState
 
 ___
 
-* [ ] aula 28 
+* [x] aula 28 
+# navegando entre telas no react sem extensões 
+vamos simular a navegação entre paginas no React de forma nativa  
+primeiro vamos criar dois arquivos nomeados de pg1 e pg2 com uma estrutura bem simples como essa e repita para o segundo mudando apenas o numero:
+```` js
+import React from 'react';
+
+export default class pg1 extends React.Component {
+    render() {
+        return (
+             <div>
+                 <h1>pagina 1</h1>
+             </div>
+        );
+    }
+};
+````  
+e no arquivo app colocamos o seguinte: veja nos comentarios dentro do codigo a explicação
+```` js
+import React,{useState,useEffect} from 'react';
+import Pg1 from './components/pg1';
+import Pg2 from './components/pg2';
+
+
+function App() {
+
+    const [pagina,setPagina]=useState(0)
+
+    const links=(p)=>{
+        if (p==1) {//caso p for igual a um ele abre a url a seguir
+            window.open('http://localhost:3000?1','_self')
+            
+        } else if(p==2) {//caso p for igual a dois ele abre a url a seguir
+            window.open('http://localhost:3000?2','_self')
+            
+        }
+    }
+
+    const retPag=()=>{
+        if(pagina==1){//se pagina seja igual a um retorna pg1
+            return<Pg1/>
+        }else if(pagina==2){//se pagina seja igual a dois retorna pg2
+            return<Pg2/>
+        }else{//caso nao seja nem 1 ou 2 ele retorna a pagina a seguir
+            return<div>
+                        <button onClick={()=>links(1)}>pagina 1</button>{/* ao ser clicado passa o parametro 1 para a função links */}
+                        <button onClick={()=>links(2)}>pagina 2</button>{/* ao ser clicado passa o parametro 2 para a função links */}
+                    </div>
+        }
+    }
+
+    useEffect(/* ao carregar a pagina é execultado*/
+        ()=>{
+        const url=window.location.href /* pega o endereço da pagina */
+            const res=url.split('?')/* pega oque tem depois do ? na url */
+            setPagina(res[1])/* pega a segunda parte de res */
+        }
+    )
+  return (
+    <>
+        {retPag()}{/* chama a função retPag */}
+    </>
+  );
+}
+
+export default App;
+```` 
+vai aparecer inicialmente uma pagina com dois botoes, ao clicar em algum deles vai ser redirecionado para ou a pagina 1 ou a pagina 2 
 
 ___
 
-* [ ] aula 29 
+* [x] aula 29 
+# exercício pratico 
+nesse fiz um filtro de pesquisa onde a pessoa pode pesquisar uma das 5 especies de cobra que coloquei na tabela veja a explicação no comentarios do codigo
+```` js
+import React,{useState} from 'react';
+
+const cobras=[
+    {nome:'cascavel', peconhenta:'sim', familia:'vibora'},
+    {nome:'jararaca', peconhenta:'sim', familia:'vibora'},
+    {nome:'surucucu Pico de jaca', peconhenta:'sim', familia:'vibora'},
+    {nome:'coral', peconhenta:'sim', familia:'Micrurus'},
+    {nome:'jiboia', peconhenta:'nao', familia:'Boidae'},
+]/* matris com as especies de cobra  */
+
+const linhas=(cat)=>{/* recebe cat como parametro e retorna as linhas da tabela */
+    const li=[]
+    cobras.forEach(
+        (cobras)=>{
+            if (cobras.nome.toUpperCase()==cat.toUpperCase() || cat.toUpperCase()== '') {/* caso cobra seja igual ao parametro cat é retornado a linha ou se cat for '' sera retornado todas as linhas */
+               li.push(
+                   <tr>
+                       <td>{cobras.nome}</td>
+                       <td>{cobras.peconhenta}</td>
+                       <td>{cobras.familia}</td>
+                   </tr>
+               ) 
+            }
+        }
+    )
+    return li/* retorna li */
+}
+
+
+const tabelaCobras=(cat)=>{/* recebe cat como parametro e retorna a tabela*/
+    return(
+        <table>
+            <thead>
+                <tr>
+                    <th>nomes</th>
+                    <th>familia</th>
+                    <th>peçonhenta</th>
+                </tr>
+            </thead>
+            <tbody>{linhas(cat)}</tbody>{/* é o corpo da tabela e recebe as li da funçao linhas */}
+        </table>
+    )
+}
+
+const  pesquisa=(cat,scat)=>{/* recebe cat e scat como paremetro e retorna uma div com um label e um input */
+    return(<div>
+        <label>pesquise aqui o nome</label>
+        <input type="text" value={cat} onChange={(e)=>scat(e.target.value)}/>{/* o onChange faz com que o scat receba o value do input ea value é o cat */}
+    </div>)
+}
+
+function App() {
+
+    const [nome,setNome]=useState('')
+
+  return (
+    <>
+        {pesquisa(nome,setNome)}{/* passa o nome como cat e setNome como scat */}
+        {tabelaCobras(nome)}{/* passa o nome para a função tabela cobras para fazer a pesquisa */}
+    </>
+  );
+}
+
+export default App;
+
+```` 
 
 ___
 
@@ -1571,5 +1790,57 @@ ___
 ___
 
 * [ ] aula 31 
+
+___
+
+* [ ] aula 32 
+
+___
+
+* [ ] aula 33 
+
+___
+
+* [ ] aula 34 
+
+___
+
+* [ ] aula 35 
+
+___
+
+* [ ] aula 36 
+
+___
+
+* [ ] aula 37 
+
+___
+
+* [ ] aula 38 
+
+___
+
+* [ ] aula 39 
+
+___
+
+* [ ] aula 40 
+
+___
+
+* [ ] aula 41 
+
+___
+
+* [ ] aula 42 
+
+___
+
+* [ ] aula 43 
+
+___
+
+* [ ] aula 44 
 
 ___
