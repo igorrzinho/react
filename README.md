@@ -1785,11 +1785,283 @@ export default App;
 
 ___
 
-* [ ] aula 30 
+* [x] aula 30 
+# fazer uma calculadora de imc com react
+ea o meu codigo é o seguinte:
+```` js
+import React,{useState} from "react";
+
+const tabela=()=>{
+  return(
+   <table>
+     <thead>
+       <tr>
+         <th>classificaçao</th>
+         <th>IMC</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+         <td>abaixo do peso</td>
+         <td>abaixo de 18,5</td>
+       </tr>
+       <tr>
+         <td>peso normal</td>
+         <td>entre 18,5 e 24,9</td>
+       </tr>
+       <tr>
+         <td>sobre pesso</td>
+         <td>entre 25 e 29,9</td>
+       </tr>
+       <tr>
+         <td>obesidade grau 1</td>
+         <td>entre 30 e 34,9</td>
+       </tr>
+       <tr>
+         <td>obesidade grau 2</td>
+         <td>entre 35 e 39,9</td>
+       </tr>
+       <tr>
+         <td>obesidade grau 3</td>
+         <td>acima de 40</td>
+       </tr>
+     </tbody>
+   </table>
+  )
+}
+
+/* captura o peso */
+const peso=(p,sp)=>{//p representa peso e sp representa o setPeso
+  return(
+    <div>
+      <label htmlFor="#peso">digite o peso</label>
+      <input type="text" placeholder="peso" value={p} onChange={(e)=>sp(e.target.value)}/>{/* sp recebe o value do elemento quando tem alguma alteração */}
+    </div>
+  )
+}
+
+
+/* captura a altura */
+const altura=(a,sa)=>{//a representa altura e sa representa o setAltura
+  return(
+    <div>
+      <label htmlFor="#peso">digite a altura</label>
+      <input type="text" placeholder="altura" value={a} onChange={(e)=>{sa(e.target.value)}}/>{/* sa recebe o value do elemento quando tem alguma alteração */}
+    </div>
+  )
+}
+
+/* calcula o imc */
+ const calcular=(p,a,sr)=>{
+  const calc = () =>
+  {
+    sr(p/(a*a))/* sr recebe o imc */
+  };
+  return (
+    <button onClick={calc}>calcular</button> 
+  );
+  {/* ao clicar chama a funçao calc */}
+}
+
+/* mostra o resultado */
+const resultado=(r)=>{
+  return(
+    <p>resultado {r.toFixed(2)}</p>
+  )
+  {/* mostra o r e não deixa ele ter mais de 2 cassas decimais */}
+}
+
+export default function App() {
+  
+    const [upeso,setUpeso]=useState('')
+    const [ualtura,setUaltura]=useState('')
+    const [uresultado,setUresultado]=useState(0)
+
+    return (
+       <>
+
+       {peso(upeso,setUpeso)}
+       {altura(ualtura,setUaltura)}
+       {calcular(upeso,ualtura,setUresultado)}
+       {resultado(uresultado)}
+       {tabela()}
+
+       </>
+    );
+}; 
+```` 
+
+
 
 ___
 
-* [ ] aula 31 
+* [x] aula 31
+ # fazer a calculadora receber componentes de props
+eu criei mais 5 componente e ficou assim  
+no app
+```` js
+import React,{useState} from "react";
+import Tabela from './components/tabela';
+import Altura from './components/altura';
+import Peso from './components/peso';
+import Resultado from "./components/resultado";
+import Calcular from "./components/calcular";
+
+
+
+/* calcula o imc */
+ const calcular=(p,a,sr)=>{
+  const calc = () =>
+  {
+    sr(p/(a*a))/* sr recebe o imc */
+  };
+  return (
+    <button onClick={calc}>calcular</button> 
+  );
+  {/* ao clicar chama a funçao calc */}
+}
+
+
+export default function App() {
+  
+    const [upeso,setUpeso]=useState('')
+    const [ualtura,setUaltura]=useState('')
+    const [uresultado,setUresultado]=useState(0)
+
+    return (
+       <>
+        <Altura a={ualtura} sa={setUaltura}/>
+        <Peso p={upeso} sp={setUpeso}/>
+        <Calcular p={upeso} a={ualtura} sr={setUresultado}/>
+       <Resultado r={uresultado}/>
+       <Tabela/>
+
+       </>
+    );
+};
+```` 
+na tabela
+```` js
+import React from 'react';
+
+export default class tabela extends React.Component{
+    render() {
+        return (
+            <table>
+            <thead>
+              <tr>
+                <th>classificaçao</th>
+                <th>IMC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>abaixo do peso</td>
+                <td>abaixo de 18,5</td>
+              </tr>
+              <tr>
+                <td>peso normal</td>
+                <td>entre 18,5 e 24,9</td>
+              </tr>
+              <tr>
+                <td>sobre pesso</td>
+                <td>entre 25 e 29,9</td>
+              </tr>
+              <tr>
+                <td>obesidade grau 1</td>
+                <td>entre 30 e 34,9</td>
+              </tr>
+              <tr>
+                <td>obesidade grau 2</td>
+                <td>entre 35 e 39,9</td>
+              </tr>
+              <tr>
+                <td>obesidade grau 3</td>
+                <td>acima de 40</td>
+              </tr>
+            </tbody>
+          </table>   
+        );
+    }
+};
+
+```` 
+ no arquivo peso
+```` js
+import React from "react";
+
+export default class peso extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+        <div>
+            <label htmlFor="#peso">digite o peso</label>
+            <input type="text" placeholder="peso" value={this.props.p} onChange={(e)=>this.props.sp(e.target.value)}/>{/* sp recebe o value do elemento quando tem alguma alteração */}
+        </div>
+        );
+    }
+};
+
+```` 
+no arquivo altura
+```` js
+import React from "react";
+
+export default class peso extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        return (
+        <div>
+            <label htmlFor="#peso">digite a altura</label>
+            <input type="text" placeholder="altura" value={this.props.a} onChange={(e)=>{this.props.sa(e.target.value)}}/>{/* sa recebe o value do elemento quando tem alguma alteração */}
+        </div>
+        );
+    }
+};
+
+```` 
+no arquivo calcular
+```` js
+import React from "react";
+
+export default class Calcular extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render(){
+        const calc = () =>{
+    this.props.sr(this.props.p/(this.props.a*this.props.a))/* sr recebe o imc */
+  };
+
+
+  return (
+    <button onClick={calc}>calcular</button> 
+  );
+    }
+};
+
+```` 
+e no arquivo resultado
+```` js]
+import React from "react"
+
+export default class Resultado extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+                <p>resultado {this.props.r.toFixed(2)}</p>
+        );{/* mostra o r e não deixa ele ter mais de 2 cassas decimais */}
+    }
+};
+
+```` 
 
 ___
 
