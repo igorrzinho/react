@@ -83,7 +83,9 @@ const idade = 15
 	)
 }
 ```` 
+
 ___
+
 # inserir imagens no react
 para usarmos imagens no nosso aplicativo usamos 
 `import nomeDeSuaPreferencia from 'nomeDaImagem.extensão'`  
@@ -101,7 +103,9 @@ export default function App(){
 	)
 }
 ```` 
+
 ___
+
 # criar componentes
 crie um novo componente .jsx faça a importação usando 
 ```` jsx
@@ -111,7 +115,9 @@ import Nome from './nome'
 ```` jsx
 <Header/>
 ```` 
+
 ___
+
 # props
 para utilizarmos os props criamos uma função que tenha como parametro props
 ```` jsx
@@ -169,7 +175,9 @@ export default function user() {
   );
 }
 ```` 
+
 ___
+
 # enviar funções com props
 primeiro crie um props normalmente:
 ``` jsx
@@ -228,7 +236,9 @@ return 'igor'
   )
 ```` 
 **não pode colocar () quando não é retornado uma string use somente para strings**
+
 ___
+
 # css no react:
 para importar um css podemos ultilizar duas formas:
 
@@ -259,8 +269,9 @@ e no arquivo jsx
  o css pode ser adicionado de forma global por meio do arquivo **index.css** 
 ## voce tambem pode ustilizar o css modules 
  voce coloca o nome do arquivo que vai estilizar e cria um arquivo css com nome de "Nome.module.css"
+
 ___
-* [x] aula 9  
+
 # fragments
 é basicamente você usar o `<></>` no lugar de uma div.por exemplo para criar uma ul voce pode usar isso no lugar de uma div veja:
 ```` js
@@ -290,7 +301,9 @@ export default function List(){
 ```` 
 
 não tem porque adicionarmos mais uma div.
+
 ___
+
 # props types
 para usarmos o propTypes precisamos importar o propTypes `import PropTypes from 'prop-types'` 
 ```` jsx
@@ -325,7 +338,10 @@ Dados.defaultProps={
 }
 ```` 
 neste caso o `isRequired` não é necessário 
-___ 
+
+___
+
+ 
 # eventos em react 
 * os eventos do react são os mesmos do DOM
 * nao tem muita diferença exeto por uma coisa bem siples: ao ultilizar o onClik ou outras funcoes do tipo nao se coloca os paranteses'()'
@@ -346,9 +362,10 @@ export default function Eventos(){
 ```` 
 
  `<button onClick={event} className='btn'> clique aqui</button>` repare que não se coloca os parenteses'()'
+
 ---
+
 # rendenezição
-* [x] aula 09   
   no react a rendenização funcion de forma com que apenas oque sofreu alteração sera mudado
  ao criarmos uma função de relogio
 ```` jsx 
@@ -409,7 +426,7 @@ ao irmos no navegador veremos que apenas oque esta sendo mudado é o **h1** onde
 
 ___
 
-* [x] aula 10  
+ 
 # state
  a primeira coisa que devemos fazer para usar o **state** é importar-lo `import React,{useState} from 'react';` 
  para criar um **state** usamos
@@ -490,9 +507,9 @@ export default function nome(props) {
 }
 ```` 
  o resultado é o mesmo do anterior porem passaos as funçoes e o state ultilizando **props**
+
 ___
 
-* [x] aula   11  
 # eventos em react
  esse projeto consiste em uma lampada que acende e desliga conforme os clicks no botão
 * no arquivo app.js 
@@ -553,9 +570,10 @@ function App() {
 export default App;
 ```` 
 ao clicar no link não sera redirecionado
+
 ___
 
-* [x] aula 12  
+
 # rendenizaçao condicional 
 ## exemplo 1
  essa função mostrara um cumprimento de acordo com as horas que sao no computador da pessoa;
@@ -617,9 +635,10 @@ function App() {
 
 export default App;
 ```` 
+
 ___
 
-* [x] aula 13 
+
 # trabalhando com a função map
 ## exemplo 1 
 nesse caso vai imprimir os carros na tela dessa forma: "HRVGOLFFOCUSCRUZEARGO"
@@ -705,9 +724,10 @@ function App() {
 export default App;
 ```` 
 agora sim cada objeto sera tratado
+
 ___
 
-* [x] aula 14  
+ 
 # formularios em React
 ## exemplo 1 
 abaixo a useState nome inicia como uma stirng vazia e o value do input é o variavel o onChange faz com que qualquer mudança no value do input o setNome recebe a value só input  
@@ -801,9 +821,9 @@ function App() {
 
 export default App;
 ```` 
+
 ___
 
-* [x] aula 15 
 # elevação de state
 ## exemplo 1 
 nesse app captura o valor dos values do formulario e coloca dentro do objeto form  
@@ -846,7 +866,6 @@ export default App;
 
 ___
 
-* [x] aula 16 
 # elevação de state  
  este projeto é um sistema para ver se o aluno foi aprovado ou nao  
  no app  
@@ -915,9 +934,10 @@ export default function Resultado(props){
     );
 };>setContagem=>(contagem+1
 ```` 
+
 ___
 
-* [x] aula 17
+
 # desafio da aula 17;  
  no app
 ```` js
@@ -992,9 +1012,10 @@ export default function>setContagem=>(contagem+1 Notas(props){
     );
 }
 ```` 
+
 ___
 
-* [x] aula 18  
+
 # contenação  
  a contenação nada mais é que voce ultilizar um elementos como uma div e usar o props para chamar oque tiver dentro dela veja abaixo:
  no arquivo app
@@ -1054,7 +1075,7 @@ export default function Caixa(props){
 
 ___
 
-* [x] aula 19 
+
 # useEffect 
  primeiro importamos ele: `import React,{useEffect}from 'react';`
  agora podemos usa-lo, o **useEffect** é chamado toda vez que a pagina é carregada ou atualizada por exemplo:
@@ -1113,7 +1134,7 @@ return(
 
 ___ 
 
-* [x] aula 20 
+
 # localStorage
 o **localStorage** é formado basicamente por 3 funções são elas: `setItem` que vai criar ou mudar o valor da chave,`getItem` vai chamar a chave e `removeItem` vai remover a chave
 ```` js
@@ -1176,9 +1197,9 @@ function App() {
 export default App;
 
 ```` 
+
 ___
 
-* [x] aula 21 
 # componentes de classe (inicio do POO)
 para criar um componentes com classe usamos:
 ```` js
@@ -1237,9 +1258,10 @@ class classe extends React.Component{
 export default classe;
 
 ```` 
+
 ___
 
-* [x] aula  22 
+
 # state em componetes de classe
 as diferenças começam na hora de declarar uma variavel comum precisamos colocada dentro do `constructor` veja abaixo  
 e antes de usar o nome da variável usamos `this.nomeDaVariavel`
@@ -1330,9 +1352,9 @@ class luz extends React.Component{
 export default classe;
  
 ```` 
+
 ___
 
-* [x] aula 23 
 # parte dois state em componetes de classe
 agora usamos na função que o **botão** chama, uma aerofunction dentro da função para não ter erro e ele adicionar +1 no numero
 ```` js
@@ -1372,7 +1394,7 @@ export default Calc;
 
 ___
 
-* [x] aula 24
+
 ## BIND em react
  o BIND vai permitir que mudar o conceito do this de um determinado elemento  
 faremos um BIND para a função `ligarDesligar()` eo codigo ficou assim
@@ -1448,7 +1470,7 @@ export default luz;
 
 ___
 
-* [X] aula 25
+
 ## ciclo de vida dos componentes 
 1. Na montagem, quando uma instancia do componente esta sendo criada no DOM
 	1. constructor()
@@ -1550,7 +1572,7 @@ sempre que apertamos em tirar a luz aparecera um console.log com 'objeto removid
 
 ___
 
-* [x] aula 26
+
 # estrutura de um componentes de classes
 ```` js 
 import React from "react";
@@ -1610,7 +1632,7 @@ export default class BaseClasse extends React.Component{
 
 ___
 
-* [x] aula 27
+
 # variáveis globais 
  para declarar variáveis globais usamos o seguinte `static nomeVariavel='oque ela recebe'` veja no exemplo abaixo onde declaramos as variáveis nome e idd: 
 ```` js
@@ -1641,7 +1663,7 @@ lembrando que são **VARIÁVEIS** e não muda o valor que é mostrado na tela po
 
 ___
 
-* [x] aula 28 
+
 # navegando entre telas no react sem extensões 
 vamos simular a navegação entre paginas no React de forma nativa  
 primeiro vamos criar dois arquivos nomeados de pg1 e pg2 com uma estrutura bem simples como essa e repita para o segundo mudando apenas o numero:
@@ -1712,7 +1734,7 @@ vai aparecer inicialmente uma pagina com dois botoes, ao clicar em algum deles v
 
 ___
 
-* [x] aula 29 
+
 # exercício pratico 
 nesse fiz um filtro de pesquisa onde a pessoa pode pesquisar uma das 5 especies de cobra que coloquei na tabela veja a explicação no comentarios do codigo
 ```` js
@@ -1785,7 +1807,7 @@ export default App;
 
 ___
 
-* [x] aula 30 
+
 # fazer uma calculadora de imc com react
 ea o meu codigo é o seguinte:
 ```` js
@@ -1895,7 +1917,6 @@ export default function App() {
 
 ___
 
-* [x] aula 31
  # fazer a calculadora receber componentes de props
 eu criei mais 5 componente e ficou assim  
 no app
@@ -2065,54 +2086,191 @@ export default class Resultado extends React.Component {
 
 ___
 
-* [ ] aula 32 
+# construindo uma calculadora com react
+```` js
+import React, { Fragment } from "react";
+
+import './calculator.css';
+
+export default class Calculator extends React.Component {
+    
+    constructor() {
+    super()
+       
+
+    this.state={
+        result:0,
+        tela:' ',
+    }
+    }
+
+    adigito(num){
+        this.setState(
+            ()=>({tela:this.state.tela+num})
+        )
+    }
+
+    clear(){
+        this.setState(
+            ()=>({
+                tela:'',
+                result:0
+            })
+        )
+    }
+    
+    removeOne(){
+        let vtela=this.state.tela
+        vtela=vtela.substring(0,(vtela.length-1))
+        this.setState(
+            ()=>({tela:vtela})
+        )
+    }
+
+    calc (){
+        this.setState(
+            ()=>({result:eval(this.state.tela)})
+        )
+    }
+
+    render() {
+       
+       return(
+       <Fragment>
+                <h1>calculator</h1>
+                <div className="calculator"> 
+                <div className="input">
+                    <p className="tela">{this.state.tela}</p>
+                    <p className="result">{this.state.result}</p>
+                </div>
+                    <button onClick={()=>this.clear()} className="btnGreen">AC</button>
+                    <button onClick={()=>this.adigito('(')} className="btnBlue">(</button>
+                    <button onClick={()=>this.adigito(')')} className="btnBlue">)</button>
+                    <button onClick={()=>this.adigito('/')} className="btnBlue">&divide;</button>
+
+                    <button onClick={()=>this.adigito('7')} className="btn1">7</button>
+                    <button onClick={()=>this.adigito('8')} className="btn1">8</button>
+                    <button onClick={()=>this.adigito('9')} className="btn1">9</button>
+                    <button onClick={()=>this.adigito('*')} className="btnBlue">&times;</button>
+
+                    <button onClick={()=>this.adigito('4')} className="btn1">4</button>
+                    <button onClick={()=>this.adigito('5')} className="btn1">5</button>
+                    <button onClick={()=>this.adigito('6')} className="btn1">6</button>
+                    <button onClick={()=>this.adigito('-')} className="btnBlue">&ndash;</button>
+
+                    <button onClick={()=>this.adigito('1')} className="btn1">1</button>
+                    <button onClick={()=>this.adigito('2')} className="btn1">2</button>
+                    <button onClick={()=>this.adigito('3')} className="btn1">3</button>
+                    <button onClick={()=>this.adigito('+')} className="btnBlue">+</button>
+
+                    <button onClick={()=>this.adigito('0')} className="btn1">0</button>
+                    <button onClick={()=>this.adigito(',')} className="btn1">,</button>
+                    <button onClick={()=>this.removeOne()} className="btn1">c</button>
+                    <button onClick={()=>this.calc()} className="btnRes">=</button>
+
+             </div>
+             </Fragment>
+       );
+    }
+};
+
+```` 
 
 ___
 
-* [ ] aula 33 
+# construindo uma aplicação para consumir com node js
+o codigo da aplicaçao é a seguinte
+```` js
+var felinos='['+
+'{"id":1, "nome":"Tigre", "nomecientifico": "Panthera tigris"},'+
+'{"id":2,"nome":"Leao", "nomecientifico":"Panthera leo"},'+
+'{"id":3,"nome":"Onca", "nomecientifico": "Panthera onca"},'+
+'{"id":4,"nome":"Leopardo", "nomecientifico":"Panthera pardus"},'+
+'{"id":5,"nome":"puma","nomecientifico":"puma concolor"}'+
+']';
+
+var http=require('http');
+var server=http.createServer (function
+(request, response) { response.setHeader
+('Access-Control-Allow-Origin','*');
+response.writeHeader (200,
+{"Content-Type": "text/html"});
+response.write(felinos);
+response.end();
+});
+
+server.listen(3000);
+
+````
 
 ___
 
-* [ ] aula 34 
+# consumindo uma api usando axios 
+para instalar o axios usamos se estiver usando **yarn** `yarn add axios` caso esteja ultilizando o **npm** `npm install react-axios`
+## em componentes de classes 
+```` js
+import React from 'react';
+import axios from 'axios';//importa o axios
+
+export default class Lista extends React.Component {
+    state={
+        felinos:[],//state felinos
+    }
+
+    componentDidMount(){//quando o componente esta sendo criado chama essa funçao automaticamente
+        let url='https://apifelinos.igorrzinho.repl.co'
+        axios.get(url)
+            .then(res=>{
+                const dados=res.data//dados recebe os dados da api
+                this.setState({felinos:dados})//state felinos recebe a constante dados
+                console.log(typeof(this.state.felinos));//confere se o state felinos é realmente um objeto
+            })
+    }
+
+    render() {
+        return (
+             <div>{this.state.felinos.map(//a funçao map percore o objeto todo e para todos oque tiver dentro e rendeniza na tela
+                 felino=><div key={felino.id}>{felino.id} - {felino.nome} - {felino.nomecientifico}</div>
+             )}</div>
+        );
+    }
+};
+
+````
 
 ___
 
-* [ ] aula 35 
+## em componentes de funçao
+```` js
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';//importa o axios
+
+export default function Lista (){
+    const [felinos,setFelinos]=useState([])
+
+    useEffect(()=>{//quando o componente é criado ou sofre alteração chama essa funçao automaticamente
+        let url='https://apifelinos.igorrzinho.repl.co'
+        axios.get(url)
+            .then(res=>{
+                const dados=res.data//dados recebe os dados da api
+                setFelinos(dados)//state felinos recebe a constante dados
+                console.log(typeof(felinos));//confere se o state felinos é realmente um objeto
+            })
+    })
+
+
+        return(
+             <div>{this.state.felinos.map(//a funçao map percore o objeto todo e para todos oque tiver dentro e rendeniza na tela
+                 felino=><div key={felino.id}>{felino.id} - {felino.nome} - {felino.nomecientifico}</div>
+             )}</div>
+        );
+};
+
+```` 
 
 ___
 
-* [ ] aula 36 
+ 
 
 ___
 
-* [ ] aula 37 
-
-___
-
-* [ ] aula 38 
-
-___
-
-* [ ] aula 39 
-
-___
-
-* [ ] aula 40 
-
-___
-
-* [ ] aula 41 
-
-___
-
-* [ ] aula 42 
-
-___
-
-* [ ] aula 43 
-
-___
-
-* [ ] aula 44 
-
-___
