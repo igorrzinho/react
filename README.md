@@ -2260,17 +2260,138 @@ export default function Lista (){
 
 
         return(
-             <div>{this.state.felinos.map(//a funçao map percore o objeto todo e para todos oque tiver dentro e rendeniza na tela
+             <div>{felinos.map(//a funçao map percore o objeto todo e para todos oque tiver dentro e rendeniza na tela
                  felino=><div key={felino.id}>{felino.id} - {felino.nome} - {felino.nomecientifico}</div>
              )}</div>
         );
 };
 
+
 ```` 
 
 ___
 
- 
+ # consumindo uma API com fetch
+para usar o **fetch** não precisa usar o axios
+```` js
+import React from 'react';
+
+export default class Lista extends React.Component {
+    state={
+        felinos:[],//state felinos
+    }
+
+    componentDidMount(){//quando o componente esta sendo criado chama essa funçao automaticamente
+        let url='https://apifelinos.igorrzinho.repl.co'
+        fetch(url)
+            .then((res)=>res.json())
+            .then(
+                (resultado)=>{//resultado recebe os dados da api
+                const dados=resultado//dados recebe resultado
+                this.setState({felinos:dados})//state felinos recebe a constante dados
+                console.log(typeof(this.state.felinos));//confere se o state felinos é realmente um objeto
+            }
+            )
+    }
+
+    render() {
+        return (
+             <div>{this.state.felinos.map(//a funçao map percore o objeto todo e para todos oque tiver dentro e rendeniza na tela
+                 felino=><div key={felino.id}>{felino.id} - {felino.nome} - {felino.nomecientifico}</div>
+             )}</div>
+        );
+    }
+};
+
+````
 
 ___
 
+# React Router
+para instalar o **React Router** no yarn usamos `yarn add react-router-dom react-router` e no npm usamos `npm i react-router-dom react-router`  
+
+criamos tres arquivos nomeados de pg1 pg2 e pg3 para usarmos como exemplo  
+
+no arquivo index.js precisamos fazer a importação do **BrowserRouter** e usar no lugar do **React.StrictMode** assim:
+```` js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from 'react-router-dom'// importamos aqui 
+
+
+ReactDOM.render(
+  <BrowserRouter>{/* usamos aqui */}
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
+
+reportWebVitals();
+
+````
+
+no arquivo app  
+* o **Link** no `to='/'` indica para onde vai ser direcionado
+* o **Route** usamos o `path=""` idicando para o endereço desejado e `element={<o que vai rendenizar}` **todos** links precisam de um desse exeto os que vão para "/" pois é a pasta padrao
+```` js
+import React from 'react';
+import {Route,Routes,Link,BrowserRouter} from 'react-router-dom';//importamos do react router
+import Pg3 from './components/pg3';
+import Pg2 from './components/pg2';
+import Pg1 from './components/pg1';
+
+export default function App(){
+ return(
+<>
+      <header>
+        <ul>
+            <li><Link to="/" > Home </Link> </li> {/* esse é o UNICO que não precisa criar route pois ele leva para a padrão */}
+            <li><Link to="/pag1" > Página 1 </Link></li> {/* o to='' indica para onde vai ser direcionado  */}
+            <li><Link to="/pag2" > Página 2 </Link></li>
+            <li><Link to="/pag3" > Página 3 </Link></li>
+        </ul>
+      </header>
+      <main>
+          <Routes>
+            <Route exact path="/pag1" element={<Pg1/>}/>{/* usamos o path="" idicando para o endereço desejado e element={<o que vai rendenizar} todos links precisam de um desse exeto os que vão para "/" pois é a pasta padrao/>} */}
+            <Route exact path="/pag2" element={<Pg2/>}/>
+            <Route exact path="/pag3" element={<Pg3/>}/>
+          </Routes>
+      </main>
+    </>
+ )
+}
+````
+
+___
+
+# o atributo key
+a key deve ser usada como um id principalmente para listas onde são obrigatorias
+```` js
+import React from 'react';
+
+function ListaNumeros(props){
+    const num=props.numeros
+
+    const lista_numeros=num.map(/* vai percorer a lista_numeros e retornar uma li com o numero da posição */
+        (n)=><li key={n}>{n}</li>
+    )
+    return(<ul>{lista_numeros}</ul>)/* retorna uma lista com os numeros */
+}
+
+const Mnumeros=[1,2,3,4,5,6,7,8,9]
+
+export default function App(){
+
+ return(
+    <>
+    
+        <ListaNumeros numeros={Mnumeros}/>{/* passa a array Mnumeros como parametro props  */}
+    
+    </>
+ )
+}
+````
