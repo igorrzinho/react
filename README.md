@@ -1077,6 +1077,12 @@ ___
 
 
 # useEffect 
+
+````
+    useEffect(() => {
+        localStorage.setItem("nome", "igorrzinho");
+    }, [initialValues]);
+````
  primeiro importamos ele: `import React,{useEffect}from 'react';`
  agora podemos usa-lo, o **useEffect** é chamado toda vez que a pagina é carregada ou atualizada por exemplo:
  aqui ao você abrir a pagina sera dado o console.log('pagina carregada') porque a pagina foi carregada
